@@ -12,13 +12,14 @@ import win32process
 import time
 
 
-PROCESS_NAME = "LeagueClientUx.exe"
+PROCESS_NAME = "ShooterGame.exe"
 
 class ProcessMonitor:
     def __init__(self, process_name) -> None:
         self.PROCESS_NAME = process_name
         
     def is_process_focused(self) -> bool:
+        '''Prints 1 if the process is focused, 0 otherwise'''
         # Obtiene el handle de la ventana en primer plano
         foreground_window = win32gui.GetForegroundWindow()
         
@@ -35,10 +36,10 @@ class ProcessMonitor:
     def run(self) -> None:
         while True:
             if self.is_process_focused():
-                print(f"{self.PROCESS_NAME} is focused!")                
+                print(1)
             else:
-                print(f"{self.PROCESS_NAME} is not focused!")
-            time.sleep(5)
+                print(0)
+            time.sleep(2)
 
 
 
