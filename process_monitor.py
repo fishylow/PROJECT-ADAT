@@ -13,6 +13,7 @@ import time
 
 
 PROCESS_NAME = "ShooterGame.exe"
+WAIT_TIME = 2
 
 class ProcessMonitor:
     def __init__(self, process_name) -> None:
@@ -39,7 +40,7 @@ class ProcessMonitor:
                 print(1)
             else:
                 print(0)
-            time.sleep(2)
+            time.sleep(WAIT_TIME)
 
 
 
