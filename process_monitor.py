@@ -7,6 +7,8 @@ Some comments are in Spanish, their translation will be added later.
 """
 
 import win32gui
+import win32api
+import win32con
 import psutil
 import win32process
 import time
@@ -34,12 +36,24 @@ class ProcessMonitor:
         # Verifica si el nombre del proceso coincide con el nombre proporcionado
         return process_name == self.PROCESS_NAME
     
+    def get_active_monitor(self) -> str:
+        '''Returns monitor where the process is located'''
+        # Obtiene el handle de la ventana en primer plano
+        foreground_window = win32gui.GetForegroundWindow()
+        
+        # Obtiene el ID del monitor donde se encuentra la ventana del proceso
+        monitor_info = win32api.GetMonitorInfo(win32api.MonitorFromWindow(foreground_window, win32con.MONITOR_DEFAULTTONEAREST))
+        monitor_id = monitor_info['Device'].strip('\\').split('\\')[-1]
+        
+        return monitor_id
+    
     def run(self) -> None:
         while True:
             if self.is_process_focused():
                 print(1)
             else:
                 print(0)
+            print(self.get_active_monitor())
             time.sleep(WAIT_TIME)
 
 
