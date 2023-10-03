@@ -24,7 +24,7 @@ class ProcessMonitor:
     def is_process_focused(self) -> bool:
         '''Prints 1 if the process is focused, 0 otherwise'''
         # Obtiene el handle de la ventana en primer plano
-        foreground_window = win32gui.GetForegroundWindow()
+        foreground_window = self.get_foreground_window_handle()
         
         # Obtiene el ID del proceso de la ventana en primer plano
         foreground_process_id = win32process.GetWindowThreadProcessId(foreground_window)[1]
@@ -39,13 +39,17 @@ class ProcessMonitor:
     def get_active_monitor(self) -> str:
         '''Returns monitor where the process is located'''
         # Obtiene el handle de la ventana en primer plano
-        foreground_window = win32gui.GetForegroundWindow()
+        foreground_window = self.get_foreground_window_handle()
         
         # Obtiene el ID del monitor donde se encuentra la ventana del proceso
         monitor_info = win32api.GetMonitorInfo(win32api.MonitorFromWindow(foreground_window, win32con.MONITOR_DEFAULTTONEAREST))
         monitor_id = monitor_info['Device'].strip('\\').split('\\')[-1]
         
         return monitor_id
+    
+    def get_foreground_window_handle(self) -> int:
+        '''Returns the handle of the foreground window'''
+        return win32gui.GetForegroundWindow()
     
     def run(self) -> None:
         while True:
