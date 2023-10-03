@@ -64,5 +64,5 @@ class ProcessController:
 
 
 if __name__ == "__main__":
-    monitor = ProcessMonitor(PROCESS_NAME)
+    monitor = ProcessController(PROCESS_NAME)
     monitor.run()
