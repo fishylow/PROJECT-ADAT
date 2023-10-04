@@ -7,8 +7,6 @@ Some comments are in Spanish, their translation will be added later.
 """
 
 import win32gui
-import win32api
-import win32con
 import psutil
 import win32process
 import time
