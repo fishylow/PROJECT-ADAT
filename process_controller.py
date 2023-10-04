@@ -36,17 +36,6 @@ class ProcessController:
         # Verifica si el nombre del proceso coincide con el nombre proporcionado
         return process_name == self.PROCESS_NAME
     
-    # def get_active_monitor(self) -> str:
-    #     '''Returns monitor where the process is located'''
-    #     # Obtiene el handle de la ventana en primer plano
-    #     foreground_window = self.get_foreground_window_handle()
-        
-    #     # Obtiene el ID del monitor donde se encuentra la ventana del proceso
-    #     monitor_info = win32api.GetMonitorInfo(win32api.MonitorFromWindow(foreground_window, win32con.MONITOR_DEFAULTTONEAREST))
-    #     monitor_id = monitor_info['Device'].strip('\\').split('\\')[-1]
-        
-    #     return monitor_id
-    
     def get_foreground_window_handle(self) -> int:
         '''Returns the handle of the foreground window'''
         return win32gui.GetForegroundWindow()
