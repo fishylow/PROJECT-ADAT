@@ -5,7 +5,7 @@ class MonitorController:
     def __init__(self) -> None:
         self.monitors_info = get_monitors()
 
-    def get_monitors_resolution(self) -> dict:
+    def get_monitor_resolutions(self) -> dict:
         '''Returns a dictionary with the resolution of each monitor in the system'''
         monitors = {}
         for i, monitor in enumerate(self.monitors_info):
